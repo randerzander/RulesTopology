@@ -20,6 +20,8 @@ abc, new1, [123]
 def, new2, [456, 789]
 ```
 
+![Topology Diagram](/screenshots/topology.png?raw=true)
+
 Anything returned from the rules is emitted as an output tuple. It's up to a downstream bolt to route output to its intended final destination. This lets analysts and therefore the rules focus on simple logic instead of mechanics.
 
 # Setup:
