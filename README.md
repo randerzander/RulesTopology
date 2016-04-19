@@ -20,6 +20,8 @@ abc, new1, [123]
 def, new2, [456, 789]
 ```
 
+The diagram below depicts the topology. 'source1' is the window "filler". 'source2' is a second stream which needs to be enriched with all matching events from source1.
+
 ![Topology Diagram](/screenshots/topology.png?raw=true)
 
 Anything returned from the rules is emitted as an output tuple. It's up to a downstream bolt to route output to its intended final destination. This lets rules focus on business logic instead of mechanics.
@@ -62,18 +64,20 @@ storm jar target/RulesTopology-SNAPSHOT.jar com.github.randerzander.RulesTopolog
 
 Populate the window:
 ```
-/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list localhost:6667 --topic source1 < data/stream1.txt
+/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list localhost:6667 --topic source1 < data/source1.txt
 ```
 
 Inject new data in the stream
 ```
-/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list localhost:6667 --topic source2 < data/stream2.txt
+/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list localhost:6667 --topic source2 < data/source2.txt
 ```
 
 **Notes**:
 
-This topology uses a custom window implementation. Going forward, [Storm's out of the box windowing](http://storm.apache.org/releases/1.0.0/Windowing.html) should be used instead.
+1. This topology uses a custom window implementation. Going forward, [Storm's out of the box windowing](http://storm.apache.org/releases/1.0.0/Windowing.html) should be used instead.
 
-It uses a custom HDFSBolt to read rules from HDFS. For Storm .10+, use the [Apache HDFSSpout](https://github.com/apache/storm/tree/master/external/storm-hdfs) instead.
+2. It uses a custom HDFSBolt to read rules from HDFS. For Storm .10+, use the [Apache HDFSSpout](https://github.com/apache/storm/tree/master/external/storm-hdfs) instead.
 
-TODO: Add auto-expiry for window tuples.
+TODO:
+1. Add auto-expiry for window tuples.
+2. Add failover for windows via ZooKeeper leader elections.
