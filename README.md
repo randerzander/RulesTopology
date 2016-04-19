@@ -6,7 +6,9 @@ This topology allows end-users to supply python files to a directory in HDFS. Th
 
 Many rule systems try to maintain state across multiple events leading to resiliency and scaling problems. Instead, this topology takes the approach of building and distributing windows across worker-nodes, and requires rules to handle an atomic package of all relevant events themselves.
 
-For example, a window is built from events in data/stream1.txt.
+**Note**: This topology uses a custom window implementation. Going forward, [Storm's out of the box windowing](http://storm.apache.org/releases/1.0.0/Windowing.html) should be used instead.
+
+For example, a keyed window is built from events in data/stream1.txt.
 
 After the initial events have loaded, the window has:
 ```
