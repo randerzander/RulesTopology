@@ -1,0 +1,4 @@
+*.swp
+target/
+multilang/core-site.xml
+*.sh

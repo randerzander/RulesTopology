@@ -1,0 +1,22 @@
+# Storm config
+storm.topologyName=rules
+storm.killIfRunning=true
+storm.numWorkers=1
+storm.localMode=true
+
+zk.hosts=localhost:2181
+zk.rootNode=/kafkaStorm
+
+# Spout configs
+source1.topic=source1
+source1.consumerGroupId=source1
+
+source2.topic=source2
+source2.consumerGroupId=source2
+
+parser.default_delimiter=,
+window.filler_component=source1-parser
+
+# HDFS bolt config
+hdfs.rulesDir=/user/root/rulesDir
+hdfs.rulesRefreshFrequency=10
