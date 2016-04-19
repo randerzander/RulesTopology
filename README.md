@@ -10,8 +10,8 @@ For example, a keyed window is built from events in data/stream1.txt.
 
 After the initial events have loaded, the window has:
 ```
-abc: 123
-def: 456, 789
+abc: [123]
+def: [456, 789]
 ```
 
 After streaming events in data/stream2.txt, all rules in rulesDir will receive:
@@ -22,7 +22,13 @@ def, new2, [456, 789]
 
 ![Topology Diagram](/screenshots/topology.png?raw=true)
 
-Anything returned from the rules is emitted as an output tuple. It's up to a downstream bolt to route output to its intended final destination. This lets analysts and therefore the rules focus on simple logic instead of mechanics.
+Anything returned from the rules is emitted as an output tuple. It's up to a downstream bolt to route output to its intended final destination. This lets rules focus on business logic instead of mechanics.
+
+The rules work with Storm's standard Python tuple objects and need to implement the below Python interface:
+```
+def handle(tup):
+  return tup.values[0].lower()
+```
 
 # Setup:
 
