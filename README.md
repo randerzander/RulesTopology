@@ -79,5 +79,7 @@ Inject new data in the stream
 2. It uses a custom HDFSBolt to read rules from HDFS. For Storm .10+, use the [Apache HDFSSpout](https://github.com/apache/storm/tree/master/external/storm-hdfs) instead.
 
 TODO:
+
 1. Add auto-expiry for window tuples.
+
 2. Add failover for windows via ZooKeeper leader elections.
