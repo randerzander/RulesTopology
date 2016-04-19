@@ -6,7 +6,7 @@ This topology allows end-users to supply python files to a directory in HDFS. Th
 
 Many rule systems try to maintain state across multiple events leading to resiliency and scaling problems. Instead, this topology takes the approach of building and distributing windows across worker-nodes, and requires rules to handle an atomic package of all relevant events themselves.
 
-**Note**: This topology uses a custom window implementation. Going forward, [Storm's out of the box windowing](http://storm.apache.org/releases/1.0.0/Windowing.html) should be used instead.
+**Note**: This topology uses a custom window implementation. Going forward, [Storm's out of the box windowing](http://storm.apache.org/releases/1.0.0/Windowing.html) should be used instead. It also uses a custom HDFSBolt to read rules from HDFS. For Storm .10+, use the [Apache HDFSSpout](https://github.com/apache/storm/tree/master/external/storm-hdfs) instead.
 
 For example, a keyed window is built from events in data/stream1.txt.
 
