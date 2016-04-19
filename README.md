@@ -32,8 +32,7 @@ su hdfs
 hdfs dfs -mkdir /user/root
 hdfs dfs -chown root /user/root
 exit
-hdfs dfs -mkdir rulesDirectory
-hdfs dfs -put rules/*.py rulesDirectory/
+hdfs dfs -put rulesDir /user/root/
 ```
 
 Create Kafka topic:
