@@ -22,7 +22,15 @@ def, new2, [456, 789]
 
 Anything returned from the rules is emitted as an output tuple. It's up to a downstream bolt to route output to its intended final destination. This lets analysts and therefore the rules focus on simple logic instead of mechanics.
 
-## Setup:
+# Setup:
+
+Clone and build the project:
+```
+git clone https://github.com/randerzander/RulesTopology
+cd RulesTopology
+cp /etc/hadoop/conf/core-site.xml multilang/
+mvn clean package
+```
 
 Create HDFS directory:
 ```
